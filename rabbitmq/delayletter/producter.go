@@ -41,10 +41,10 @@ func main() {
 	err = mqCh.Publish(constant.Exchange1, constant.RoutingKey1, false, false, amqp.Publishing{
 		ContentType: "text/plain",
 		Body:        []byte(message),
-		Expiration: "5000", // 消息过期时间（消息级别）,毫秒
-		//Headers: map[string]interface{}{
-		//	"x-delay": "10000", // 消息从交换机过期时间,毫秒（x-dead-message插件提供）
-		//},
+		//Expiration: "5000", // 消息过期时间（消息级别）,毫秒
+		Headers: map[string]interface{}{
+			"x-delay": "10000", // 消息从交换机过期时间,毫秒（x-dead-message插件提供）
+		},
 	})
 	util.FailOnError(err, "消息发布失败")
 }
