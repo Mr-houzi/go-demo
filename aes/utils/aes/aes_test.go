@@ -2,9 +2,9 @@ package aes
 
 import (
 	crand "crypto/rand"
-	"math/rand"
 	"encoding/hex"
 	"fmt"
+	"math/rand"
 	"testing"
 	"time"
 )
@@ -26,7 +26,8 @@ func TestAesEncode(t *testing.T) {
 	// 生成对称密钥
 	key := GenrateRandomString(32)
 	// 生成偏移量
-	iv := GenrateRandomString(16) // iv 的长度需要 16 个字节，16个字母字符组成的字符串等于16字节（即[]byte 长度位16）
+	//iv := GenrateRandomString(16) // iv 的长度需要 16 个字节，16个字母字符组成的字符串等于16字节（即[]byte 长度位16）
+	iv := GenrateRandomString(14) // iv 的长度需要 16 个字节，16个字母字符组成的字符串等于16字节（即[]byte 长度位16）
 
 	// 待加密的明文
 	plainText := "hello world"

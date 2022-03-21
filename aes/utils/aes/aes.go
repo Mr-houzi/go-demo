@@ -5,7 +5,7 @@ import (
 	"crypto/aes"
 	"crypto/cipher"
 )
-
+// AES/CBC/PKCS5Padding
 func AesEncode(plaintext []byte, encryptionKey []byte, iv []byte) ([]byte, error) {
 	//bPlaintext := PKCS5Padding(plaintext, aes.BlockSize)
 	bPlaintext := PKCS5Padding(plaintext)
@@ -19,7 +19,7 @@ func AesEncode(plaintext []byte, encryptionKey []byte, iv []byte) ([]byte, error
 	mode := cipher.NewCBCEncrypter(block, iv)
 	mode.CryptBlocks(ciphertext, bPlaintext)
 
-	return ciphertext, err
+	return ciphertext, nil
 }
 
 func AesDecode(cipherText []byte, encryptionKey []byte, iv []byte) (plaintext []byte, err error) {
