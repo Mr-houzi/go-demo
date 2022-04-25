@@ -1,4 +1,4 @@
-package main
+package al
 
 import (
 	"fmt"
@@ -10,12 +10,13 @@ import (
 //问题描述
 //使⽤两个  goroutine 交替打印序列，⼀个  goroutine 打印数字， 另外⼀
 //个  goroutine 打印字⺟， 最终效果如下：
+// 12AB34CD56EF78GH910IJ1112KL1314MN1516OP1718QR1920ST2122UV2324WX2526YZ2728
 //解题思路
 //问题很简单，使⽤ channel 来控制打印的进度。使⽤两个 channel ，来分别控制数字和
 //字⺟的打印序列， 数字打印完成后通过 channel 通知字⺟打印, 字⺟打印完成后通知数
 //字打印，然后周⽽复始的⼯作。
 
-func main()  {
+func AlterPrint() {
 	letterchan, numberchan := make(chan bool), make(chan bool)
 	go func() {
 		i := 1
@@ -42,10 +43,11 @@ func main()  {
 			select {
 			case <-letterchan:
 				if i >= strings.Count(str, "")-1 {
+					// 超过字符串长度，结束
 					wait.Done()
 					return
 				}
-				
+
 				fmt.Print(str[i:i+1])
 				i++
 				fmt.Print(str[i:i+1])
